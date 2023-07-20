@@ -10,4 +10,8 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
   }
+
+  main{
+   padding: 10px;
+  }
 `;
