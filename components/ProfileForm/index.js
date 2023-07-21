@@ -31,7 +31,7 @@ export default function ProfileForm({ setFormData, formData }) {
 
     // Save date in the desired format
     setFormData({ ...formData, entryDate: formatDate(currentDate) });
-  }, []);
+  }, [formData, setFormData]);
 
   const SubmitBox = ({ onClose }) => {
     return (
