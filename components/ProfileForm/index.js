@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProfileForm({ setFormData, formData }) {
+  const [showSubmitBox, setShowSubmitBox] = useState(false);
+
   //Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -11,7 +13,8 @@ export default function ProfileForm({ setFormData, formData }) {
   //Handle form submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    setShowSubmitBox(true);
+    console.log(showSubmitBox);
   };
 
   useEffect(() => {
@@ -29,6 +32,21 @@ export default function ProfileForm({ setFormData, formData }) {
     // Save date in the desired format
     setFormData({ ...formData, entryDate: formatDate(currentDate) });
   }, []);
+
+  const SubmitBox = ({ onClose }) => {
+    return (
+      <Overlay>
+        <div className="submit-box">
+          <p>Data has been successfully saved!</p>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </Overlay>
+    );
+  };
+  const handleCloseBox = () => {
+    setShowSubmitBox(false);
+    console.log(showSubmitBox);
+  };
 
   return (
     <ProfileFormDiv onSubmit={handleSubmit}>
@@ -101,6 +119,7 @@ export default function ProfileForm({ setFormData, formData }) {
         </BodyDetailDiv>
       </ProfileFormBodyDiv>
       <SubmitButton type="submit">Save</SubmitButton>
+      {showSubmitBox && <SubmitBox onClose={handleCloseBox} />}
     </ProfileFormDiv>
   );
 }
@@ -163,4 +182,24 @@ const SubmitButton = styled.button`
   padding: 10px 20px;
   border-radius: 10px;
   margin: 30px 0;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .submit-box {
+    background-color: white;
+    padding: 20px;
+    margin: 0 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
 `;
