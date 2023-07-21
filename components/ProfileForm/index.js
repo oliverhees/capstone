@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function ProfileForm({ setFormData, formData }) {
   const [showSubmitBox, setShowSubmitBox] = useState(false);
-
+  console.log(showSubmitBox);
   //Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -58,6 +58,7 @@ export default function ProfileForm({ setFormData, formData }) {
           name="firstName"
           value={formData.firstName}
           onChange={handleInputChange}
+          required
         />
         <label htmlFor="weight">Weight</label>
         <input
@@ -66,6 +67,7 @@ export default function ProfileForm({ setFormData, formData }) {
           name="weight"
           value={formData.weight}
           onChange={handleInputChange}
+          required
         />
       </div>
       <div className="column-right">
@@ -76,6 +78,7 @@ export default function ProfileForm({ setFormData, formData }) {
           name="lastName"
           value={formData.lastName}
           onChange={handleInputChange}
+          required
         />
         <label htmlFor="bmi">BMI</label>
         <input
@@ -84,6 +87,7 @@ export default function ProfileForm({ setFormData, formData }) {
           name="bmi"
           value={formData.bmi}
           onChange={handleInputChange}
+          required
         />
       </div>
       <ProfileFormBodyDiv>
@@ -95,6 +99,7 @@ export default function ProfileForm({ setFormData, formData }) {
             name="chest"
             value={formData.chest}
             onChange={handleInputChange}
+            required
           />
         </BodyDetailDiv>
         <BodyDetailDiv>
@@ -105,6 +110,7 @@ export default function ProfileForm({ setFormData, formData }) {
             name="belly"
             value={formData.belly}
             onChange={handleInputChange}
+            required
           />
         </BodyDetailDiv>
         <BodyDetailDiv>
@@ -115,6 +121,7 @@ export default function ProfileForm({ setFormData, formData }) {
             name="hip"
             value={formData.hip}
             onChange={handleInputChange}
+            required
           />
         </BodyDetailDiv>
       </ProfileFormBodyDiv>
