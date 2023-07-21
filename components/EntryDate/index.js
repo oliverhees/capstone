@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function EntryDate() {
-  return <EntryDateDiv>Einstiegsdatum: 23.07.2023</EntryDateDiv>;
+export default function EntryDate({ formData }) {
+  return <EntryDateDiv>Entry Date: {formData.entryDate}</EntryDateDiv>;
 }
 
 const EntryDateDiv = styled.div`

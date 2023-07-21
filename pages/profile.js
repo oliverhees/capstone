@@ -3,16 +3,18 @@ import EntryDate from "../components/EntryDate";
 import ProfileForm from "../components/ProfileForm";
 import Router from "next/router";
 
-export default function Profile() {
+export default function Profile({ setFormData, formData }) {
   return (
     <main>
       <ProfileDiv>
         <h1>Profil</h1>
-        <EntryDate />
-        <ProfileForm />
+        <EntryDate formData={formData} />
+        <ProfileForm setFormData={setFormData} formData={formData} />
       </ProfileDiv>
     </main>
   );
 }
 
-const ProfileDiv = styled.div``;
+const ProfileDiv = styled.div`
+  background-color: #fff;
+`;
