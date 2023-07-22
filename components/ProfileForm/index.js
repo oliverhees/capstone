@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function ProfileForm({ setFormData, formData }) {
+  const [showSubmitBox, setShowSubmitBox] = useState(false);
   //Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -16,6 +17,8 @@ export default function ProfileForm({ setFormData, formData }) {
     setTimeout(handleCloseBox, 2000);
   };
 
+  const setFormDataCallback = useCallback(setFormData, []);
+
   useEffect(() => {
     // Function to convert the date to the desired format: 12.12.1981
     const formatDate = (date) => {
@@ -29,8 +32,8 @@ export default function ProfileForm({ setFormData, formData }) {
     const currentDate = new Date();
 
     // Save date in the desired format
-    setFormData({ ...formData, entryDate: formatDate(currentDate) });
-  }, [formData, setFormData]);
+    setFormDataCallback({ ...formData, entryDate: formatDate(currentDate) });
+  }, []);
 
   const SubmitBox = ({ onClose }) => {
     return (
@@ -41,8 +44,6 @@ export default function ProfileForm({ setFormData, formData }) {
       </Overlay>
     );
   };
-
-  const [showSubmitBox, setShowSubmitBox] = useState(false);
 
   const handleCloseBox = () => {
     setShowSubmitBox(false);
