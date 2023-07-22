@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 export default function ProfileForm({ setFormData, formData }) {
-  const [showSubmitBox, setShowSubmitBox] = useState(false);
-  console.log(showSubmitBox);
   //Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -14,7 +12,7 @@ export default function ProfileForm({ setFormData, formData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowSubmitBox(true);
-    console.log(showSubmitBox);
+    setTimeout(handleCloseBox, 2000);
   };
 
   useEffect(() => {
@@ -38,96 +36,99 @@ export default function ProfileForm({ setFormData, formData }) {
       <Overlay>
         <div className="submit-box">
           <p>Data has been successfully saved!</p>
-          <button onClick={onClose}>Close</button>
         </div>
       </Overlay>
     );
   };
+
+  const [showSubmitBox, setShowSubmitBox] = useState(false);
+
   const handleCloseBox = () => {
     setShowSubmitBox(false);
-    console.log(showSubmitBox);
   };
 
   return (
-    <ProfileFormDiv onSubmit={handleSubmit}>
-      <div className="column-left">
-        <label htmlFor="first-name">First Name</label>
-        <input
-          type="text"
-          id="first-name"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleInputChange}
-          required
-        />
-        <label htmlFor="weight">Weight</label>
-        <input
-          type="text"
-          id="weight"
-          name="weight"
-          value={formData.weight}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="column-right">
-        <label htmlFor="last-name">Last Name</label>
-        <input
-          type="text"
-          id="last-name"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleInputChange}
-          required
-        />
-        <label htmlFor="bmi">BMI</label>
-        <input
-          type="text"
-          id="bmi"
-          name="bmi"
-          value={formData.bmi}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <ProfileFormBodyDiv>
-        <BodyDetailDiv>
-          <label htmlFor="chest">Chest</label>
+    <>
+      <ProfileFormDiv onSubmit={handleSubmit}>
+        <div className="column-left">
+          <label htmlFor="first-name">First Name</label>
           <input
             type="text"
-            id="chest"
-            name="chest"
-            value={formData.chest}
+            id="first-name"
+            name="firstName"
+            value={formData.firstName}
             onChange={handleInputChange}
             required
           />
-        </BodyDetailDiv>
-        <BodyDetailDiv>
-          <label htmlFor="belly">Belly</label>
+          <label htmlFor="weight">Weight</label>
           <input
             type="text"
-            id="belly"
-            name="belly"
-            value={formData.belly}
+            id="weight"
+            name="weight"
+            value={formData.weight}
             onChange={handleInputChange}
             required
           />
-        </BodyDetailDiv>
-        <BodyDetailDiv>
-          <label htmlFor="hip">Hip</label>
+        </div>
+        <div className="column-right">
+          <label htmlFor="last-name">Last Name</label>
           <input
             type="text"
-            id="hip"
-            name="hip"
-            value={formData.hip}
+            id="last-name"
+            name="lastName"
+            value={formData.lastName}
             onChange={handleInputChange}
             required
           />
-        </BodyDetailDiv>
-      </ProfileFormBodyDiv>
-      <SubmitButton type="submit">Save</SubmitButton>
+          <label htmlFor="bmi">BMI</label>
+          <input
+            type="text"
+            id="bmi"
+            name="bmi"
+            value={formData.bmi}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <ProfileFormBodyDiv>
+          <BodyDetailDiv>
+            <label htmlFor="chest">Chest</label>
+            <input
+              type="text"
+              id="chest"
+              name="chest"
+              value={formData.chest}
+              onChange={handleInputChange}
+              required
+            />
+          </BodyDetailDiv>
+          <BodyDetailDiv>
+            <label htmlFor="belly">Belly</label>
+            <input
+              type="text"
+              id="belly"
+              name="belly"
+              value={formData.belly}
+              onChange={handleInputChange}
+              required
+            />
+          </BodyDetailDiv>
+          <BodyDetailDiv>
+            <label htmlFor="hip">Hip</label>
+            <input
+              type="text"
+              id="hip"
+              name="hip"
+              value={formData.hip}
+              onChange={handleInputChange}
+              required
+            />
+          </BodyDetailDiv>
+        </ProfileFormBodyDiv>
+        <SubmitButton type="submit">Save</SubmitButton>
+      </ProfileFormDiv>
       {showSubmitBox && <SubmitBox onClose={handleCloseBox} />}
-    </ProfileFormDiv>
+    </>
   );
 }
 
