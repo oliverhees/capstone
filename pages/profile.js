@@ -9,6 +9,7 @@ export default function Profile({ setFormData, formData }) {
       <ProfileDiv>
         <h1>Profil</h1>
         <EntryDate formData={formData} />
+        <p>(All Fields required)</p>
         <ProfileForm setFormData={setFormData} formData={formData} />
       </ProfileDiv>
     </main>
