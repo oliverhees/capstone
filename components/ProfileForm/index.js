@@ -60,9 +60,9 @@ export default function ProfileForm({ setFormData, formData }) {
             onChange={handleInputChange}
             required
           />
-          <label htmlFor="weight">Weight</label>
+          <label htmlFor="weight">Weight (kg)</label>
           <input
-            type="text"
+            type="number"
             id="weight"
             name="weight"
             value={formData.weight}
@@ -80,11 +80,13 @@ export default function ProfileForm({ setFormData, formData }) {
             onChange={handleInputChange}
             required
           />
-          <label htmlFor="bmi">BMI</label>
+          <label htmlFor="bmi">BMI (min. 10 / max. 40)</label>
           <input
-            type="text"
+            type="number"
             id="bmi"
             name="bmi"
+            min="10"
+            max="40"
             value={formData.bmi}
             onChange={handleInputChange}
             required
@@ -92,9 +94,9 @@ export default function ProfileForm({ setFormData, formData }) {
         </div>
         <ProfileFormBodyDiv>
           <BodyDetailDiv>
-            <label htmlFor="chest">Chest</label>
+            <label htmlFor="chest">Chest (cm)</label>
             <input
-              type="text"
+              type="number"
               id="chest"
               name="chest"
               value={formData.chest}
@@ -103,9 +105,9 @@ export default function ProfileForm({ setFormData, formData }) {
             />
           </BodyDetailDiv>
           <BodyDetailDiv>
-            <label htmlFor="belly">Belly</label>
+            <label htmlFor="belly">Belly (cm)</label>
             <input
-              type="text"
+              type="number"
               id="belly"
               name="belly"
               value={formData.belly}
@@ -114,9 +116,9 @@ export default function ProfileForm({ setFormData, formData }) {
             />
           </BodyDetailDiv>
           <BodyDetailDiv>
-            <label htmlFor="hip">Hip</label>
+            <label htmlFor="hip">Hip (cm)</label>
             <input
-              type="text"
+              type="number"
               id="hip"
               name="hip"
               value={formData.hip}
