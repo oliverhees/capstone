@@ -12,7 +12,6 @@ export default function ProfileForm({ setFormData, formData }) {
   //Handle form submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
   };
