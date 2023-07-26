@@ -1,13 +1,27 @@
 import Heading from "../components/Heading";
 import SubHeading from "../components/SubHeading";
-import { useEffect } from "react";
+import DateDiff from "../components/DateDiff";
+import Overview from "../components/Overview";
+import BodyDimensions from "../components/BodyDimensions";
+
 export default function Home({ setFormData, formData }) {
-  // const test = JSON.parse(localStorage.getItem("formData"));
-  // console.log(JSON.parse(localStorage.getItem("formData")));
+  const todayDate = new Date();
   return (
     <main>
-      <Heading>{test.firstName}</Heading>
-      <SubHeading></SubHeading>
+      <Heading>Hello {formData.firstName},</Heading>
+      <SubHeading>
+        Days:{" "}
+        <DateDiff
+          sDate={formData.entryDate}
+          eDate={todayDate.toLocaleDateString()}
+        />
+      </SubHeading>
+      <Overview weight={formData.weight} />
+      <BodyDimensions
+        chestD={formData.chest}
+        bellyD={formData.belly}
+        hipD={formData.hip}
+      />
     </main>
   );
 }
