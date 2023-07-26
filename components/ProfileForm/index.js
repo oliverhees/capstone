@@ -25,7 +25,7 @@ export default function ProfileForm({ setFormData, formData }) {
     return (
       <Overlay>
         <div className="submit-box">
-          <p>Data has been successfully saved!</p>
+          <p>Data has been successfully saved! </p>
         </div>
       </Overlay>
     );
