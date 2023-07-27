@@ -1,18 +1,22 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    weight: "",
-    bmi: "",
-    chest: "",
-    belly: "",
-    hip: "",
-    entryDate: "",
+  const [formData, setFormData] = useLocalStorageState("formData", {
+    defaultValue: {
+      firstName: "",
+      lastName: "",
+      weight: "",
+      bmi: "",
+      chest: "",
+      belly: "",
+      hip: "",
+      entryDate: "",
+    },
   });
+
   return (
     <>
       <GlobalStyle />

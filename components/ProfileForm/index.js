@@ -12,34 +12,20 @@ export default function ProfileForm({ setFormData, formData }) {
   //Handle form submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+    const currentDate = new Date();
+    // Save date in the desired format
+    if(!formData.entryDate){
+      setFormData({ ...formData, entryDate: currentDate.toLocaleDateString() });
+    }
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
   };
-
-  const setFormDataCallback = useCallback(setFormData, []);
-
-  useEffect(() => {
-    // Function to convert the date to the desired format: 12.12.1981
-    const formatDate = (date) => {
-      const day = date.getDate().toString().padStart(2, "0");
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-    };
-
-    // Current Date
-    const currentDate = new Date();
-
-    // Save date in the desired format
-    setFormDataCallback({ ...formData, entryDate: formatDate(currentDate) });
-  }, []);
 
   const SubmitBox = ({ onClose }) => {
     return (
       <Overlay>
         <div className="submit-box">
-          <p>Data has been successfully saved!</p>
+          <p>Data has been successfully saved! </p>
         </div>
       </Overlay>
     );

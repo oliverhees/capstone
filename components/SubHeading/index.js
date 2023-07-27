@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 const SubHeading = styled.h2`
-  text-align: center;
+  text-align: left;
 `;
 export default SubHeading;
