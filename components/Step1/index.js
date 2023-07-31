@@ -36,20 +36,6 @@ export default function Step1({ setFormData, formData, nextStep }) {
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
-        {/* <label htmlFor="weight">How much do you weigh?</label>
-        <input
-          type="number"
-          name="weight"
-          value={formData.weight}
-          onChange={handleChange}
-        />
-        <label htmlFor="height">What is your height?</label>
-        <input
-          type="number"
-          name="height"
-          value={formData.height}
-          onChange={handleChange}
-        /> */}
         <label>
           Do you have any health limitations or injuries that might affect
           training? (Yes/No)
