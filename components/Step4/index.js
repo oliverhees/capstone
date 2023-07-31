@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
 import LottieAnimation from "../LottieAnimation";
-import animationData from "../../public/animation.json"
+import animationData from "../../public/animation.json";
 
-export default function Step4({ setFormData, formData }) {
-  const handleViewTrainingClick = () => {};
+export default function Step4() {
   return (
     <main>
-       <LottieAnimation animationData={animationData} loop={true} />
+      <LottieAnimation animationData={animationData} loop={true} />
       <ProcessEndH2>Your training plan was successfully created!</ProcessEndH2>
       <Link href="/exercise">
         <ButtonViewTrainingDiv type="button">
