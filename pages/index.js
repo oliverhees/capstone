@@ -3,6 +3,7 @@ import SubHeading from "../components/SubHeading";
 import DateDiff from "../components/DateDiff";
 import Overview from "../components/Overview";
 import BodyDimensions from "../components/BodyDimensions";
+import CreateTrainingButton from "../components/CreateTrainingButton";
 
 export default function Home({ setFormData, formData }) {
   const todayDate = new Date();
@@ -22,6 +23,7 @@ export default function Home({ setFormData, formData }) {
         bellyD={formData.belly}
         hipD={formData.hip}
       />
+      <CreateTrainingButton />
     </main>
   );
 }
