@@ -10,7 +10,7 @@ export default function Step3({ setFormData, formData, nextStep }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormData({ ...formData, ...trainingsData });
+    setFormData({ ...formData, tData: trainingsData });
     nextStep();
   };
 

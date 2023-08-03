@@ -6,6 +6,8 @@ import useLocalStorageState from "use-local-storage-state";
 export default function App({ Component, pageProps }) {
   const [formData, setFormData] = useLocalStorageState("formData", {
     defaultValue: {
+      tData: [],
+      tDataCreated: "",
       firstName: "",
       lastName: "",
       weight: "",
