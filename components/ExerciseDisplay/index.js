@@ -45,9 +45,9 @@ const ExerciseDisplay = ({ exercises }) => {
       </ExerciseFrameDiv>
       {currentExerciseIndex === exerciseCount ? (
         <ExerciseNavigation>
-          {/* <ButtonExerciseDoneStyled onClick={doneExercise}>
+          <ButtonExerciseDoneStyled onClick={doneExercise}>
             Mark training as complete!
-          </ButtonExerciseDoneStyled> */}
+          </ButtonExerciseDoneStyled>
         </ExerciseNavigation>
       ) : (
         ""
