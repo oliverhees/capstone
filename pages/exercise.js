@@ -4,8 +4,7 @@ import DateDiff from "../components/DateDiff";
 import styled from "styled-components";
 import ExerciseDisplay from "../components/ExerciseDisplay";
 
-
-export default function Exercise({ setFormData, formData}) {
+export default function Exercise({ setFormData, formData }) {
   //const exercisesData = JSON.parse(formData.getItem("tData"));
   const exercisesData = formData.tData || [];
   const todayDate = new Date();
@@ -20,8 +19,12 @@ export default function Exercise({ setFormData, formData}) {
         />
       </SubHeading>
       <OverviewTitleDiv>Your training plan</OverviewTitleDiv>
-        {exercisesData.length > 0 ? (
-        <ExerciseDisplay exercises={exercisesData} />
+      {exercisesData.length > 0 ? (
+        <ExerciseDisplay
+          exercises={exercisesData}
+          setFormData={setFormData}
+          formData={formData}
+        />
       ) : (
         <p>No Data.</p>
       )}

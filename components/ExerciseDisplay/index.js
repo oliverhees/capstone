@@ -1,14 +1,21 @@
-import { useState } from "react";
-import Image from "next/image";
+import { use, useState } from "react";
 import styled from "styled-components";
 import { GrFormPreviousLink, GrFormNextLink } from "react-icons/gr";
 import Link from "next/link";
+import ReactPlayer from "react-player";
 
-const ExerciseDisplay = ({ exercises }) => {
+const ExerciseDisplay = ({ setFormData, formData, exercises }) => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const exercise = exercises[currentExerciseIndex];
+  const [newExerciseData, setNewExerciseData] = useState({
+    exercise_id: "",
+    exercise_done: false,
+    exercise_date: "",
+  });
+  const exerciseRawData = exercises[0];
+  const exercise = exerciseRawData.exercises;
 
-  const exerciseCount = exercises.length - 1;
+  const exerciseCount = exercise.length - 1;
+
   const nextExercise = () => {
     if (currentExerciseIndex < exerciseCount) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
@@ -22,9 +29,41 @@ const ExerciseDisplay = ({ exercises }) => {
   };
 
   const doneExercise = () => {
-    // if (currentExerciseIndex < exercises.length - 1) {
-    //   setCurrentExerciseIndex(currentExerciseIndex - 1);
-    // }
+    const currentDate = new Date();
+    const updatedEDoneList = formData.eDone || [];
+
+    // Füge die neuen Daten zur Liste hinzu
+    updatedEDoneList.push({
+      exercise_id: exercise[exerciseArray]._id,
+      exercise_done: true,
+      exercise_date: currentDate.toLocaleDateString(),
+    });
+
+    setFormData({
+      ...formData,
+      eDone: updatedEDoneList,
+    });
+  };
+
+  const exerciseArray = currentExerciseIndex + 1;
+
+  const foundExerciseData = (id) => {
+    let output = false;
+    const currentDate = new Date();
+    const foundId = formData.eDone.find((itemId) => itemId.exercise_id === id);
+    console.log(id);
+    const foundDate = formData.eDone.find(
+      (item) => item.exercise_date === currentDate.toLocaleDateString()
+    );
+    const foundDone = formData.eDone.find(
+      (item) => item.exercise_done === true
+    );
+
+    if (foundId && foundDate && foundDone) {
+      output = true;
+    }
+
+    return output;
   };
 
   return (
@@ -32,26 +71,42 @@ const ExerciseDisplay = ({ exercises }) => {
       <ExerciseFrameDiv>
         <ExerciseDiv>
           <ExerciseTitleH2>{`Exercise ${currentExerciseIndex + 1} from ${
-            exercises.length
+            exercise.length
           }`}</ExerciseTitleH2>
-          <ExerciseTitleH3>{exercise.name}</ExerciseTitleH3>
-          <Image
-            src={exercise.gifUrl}
-            alt="Übungs-GIF"
-            width={300}
-            height={150}
-          />
+          <ExerciseTitleH3>{exercise[exerciseArray].name}</ExerciseTitleH3>
+          <PlayerWrapper>
+            <ReactPlayer
+              className="react-player"
+              url={exercise[exerciseArray].exercise_video}
+              width="100%"
+              height="100%"
+            />
+          </PlayerWrapper>
+          <ExerciseDetails>
+            <ExerciseDescription>
+              {exercise[exerciseArray].description}
+            </ExerciseDescription>
+            <ExerciseRepetitions>
+              Repetions: {exercise[exerciseArray].exercise_repetitions}
+            </ExerciseRepetitions>
+            <ExerciseSets>
+              Sets: {exercise[exerciseArray].number_of_sets}
+            </ExerciseSets>
+          </ExerciseDetails>
         </ExerciseDiv>
       </ExerciseFrameDiv>
-      {currentExerciseIndex === exerciseCount ? (
-        <ExerciseNavigation>
+
+      <ExerciseNavigation>
+        {foundExerciseData(exercise[exerciseArray]._id) ? (
+          <ButtonExerciseDoneMarkStyled>
+            You have done this exercise!
+          </ButtonExerciseDoneMarkStyled>
+        ) : (
           <ButtonExerciseDoneStyled onClick={doneExercise}>
-            Mark training as complete!
+            Mark exercise as complete!
           </ButtonExerciseDoneStyled>
-        </ExerciseNavigation>
-      ) : (
-        ""
-      )}
+        )}
+      </ExerciseNavigation>
       <ExerciseNavigation>
         {currentExerciseIndex > 0 ? (
           <ButtonStyled onClick={prevExercise}>
@@ -64,7 +119,7 @@ const ExerciseDisplay = ({ exercises }) => {
             Prev
           </ButtonStyled>
         )}
-        {currentExerciseIndex === exerciseCount ? (
+        {currentExerciseIndex === exerciseCount - 1 ? (
           <Link href="/exercise-done">
             <ButtonExerciseDoneStyled>
               Next <GrFormNextLink size={20} />
@@ -84,6 +139,38 @@ export default ExerciseDisplay;
 
 const ExerciseDoneButton = styled.a``;
 
+const PlayerWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+const ExerciseDetails = styled.div`
+  font-size: 1.2rem;
+`;
+
+const ExerciseDescription = styled.div`
+  font-size: 0.8rem;
+  padding: 1rem 0;
+`;
+
+const ExerciseRepetitions = styled.div`
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  width: 50%;
+`;
+
+const ExerciseSets = styled.div`
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  width: 50%;
+`;
+
 const ExerciseNavigation = styled.div`
   margin: 20px 0;
   width: 100%;
@@ -93,42 +180,64 @@ const ExerciseNavigation = styled.div`
 `;
 
 const ButtonExerciseDoneStyled = styled.button`
-  width: 200px;
-  border-radius: 0.8rem;
-  border: solid thin #ccc;
-  padding: 15px 0px 15px 0px;
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px 60px;
   border-radius: 2rem;
+  margin: auto;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  text-decoration: none;
+  background-color: aliceblue;
+  border: solid thin #ccc;
+  color: #000;
 
   &:hover {
-    background-color: #999;
+    background-color: mediumslateblue;
     color: #fff;
   }
-`;
-
-const ButtonStyled = styled.button`
-  width: 200px;
-  border-radius: 0.8rem;
-  border: solid thin #ccc;
-  padding: 15px 0px 15px 0px;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
 
   &:visited {
     text-decoration: none;
   }
+`;
+
+const ButtonExerciseDoneMarkStyled = styled.button`
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 2rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: solid thin #ccc;
+  background-color: mediumslateblue;
+  color: #fff;
+`;
+
+const ButtonStyled = styled.button`
+  font-size: 1rem;
+  width: 200px;
+  padding: 10px 0;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: aliceblue;
+  border: solid thin #ccc;
+  color: #000;
 
   &:hover {
-    background-color: #999;
+    background-color: mediumslateblue;
     color: #fff;
+  }
+
+  &:visited {
+    text-decoration: none;
   }
 `;
 

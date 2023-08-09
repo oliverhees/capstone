@@ -2,7 +2,7 @@ import styled from "styled-components";
 import LottieAnimation from "../components/LottieAnimation";
 import animationData from "../public/animation-goal.json";
 
-export default function ExerciseDone() {
+export default function ExerciseDone({ setFormData, formData}) {
   return (
     <main>
       <LottieAnimation animationData={animationData} loop={true} />
