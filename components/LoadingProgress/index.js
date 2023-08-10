@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
+import LottieAnimation from "../LottieAnimation";
+import animationDataTinkingAi from "../../public/animation_thinking_ai.json";
+import styled from "styled-components";
 
 const phrases = [
-  "Fragenkatalog wird analysiert...",
-  "Das KI-Monster wir gezähmt...",
-  "Trainingsdaten werden zusammengestellt...",
-  "Übungen werden geklöppelt...",
-  "Antwortmuster werden generiert...",
-  "Abstimmung der semantischen Matrix...",
-  "Metadaten werden verknüpft...",
-  "Kreative Algorithmen werden aktiviert...",
-  "Hyperverbundene Denkprozesse werden initialisiert...",
-  "Neuronale Schleifen werden optimiert...",
-  "Quantenbits werden ausgeglichen...",
-  "Kausale Wahrscheinlichkeiten werden abgeglichen...",
-  "Algorithmische Magie wird gewirkt...",
-  "Intergalaktische Verbindungen werden hergestellt...",
-  "Wir sind fast fertig...aber da kommt noch was rein...",
-  "Anfrage wird in sprachliche Bausteine umgewandelt...",
-  "Antworten aus dem kollektiven Wissen werden extrahiert...",
-  "Symbiotische KI-Stränge werden verflochten...",
-  "Eine Prise neuronaler Synchronizität wird hinzugefügt...",
-  "Letzte Überprüfung der Antwortintegrität...",
-  "Der Ladevorgang nähert sich dem Abschluss.",
-  "Antwort wird in verständliche Sprache übersetzt...",
-  "Semantische Variabilität wird angewandt...",
-  "Antwort wird finalisiert und formatiert...",
-  "Antwort übermittelt!",
-  "Ladevorgang abgeschlossen. Dein Trainingsplan ist fertig!",
+  "Questionnaire is analyzed...",
+  "The AI monster is being tamed...",
+  "Training data is compiled...",
+  "Exercises are lumped...",
+  "Response patterns are generated...",
+  "Semantic matrix tuning...",
+  "Metadata is linked...",
+  "Creative algorithms are activated...",
+  "Hyperconnected thought processes are initialized...",
+  "Neural loops are optimized...",
+  "Quantum bits are balanced...",
+  "Causal probabilities are balanced...",
+  "Algorithmic magic is cast...",
+  "Intergalactic connections are made...",
+  "We're almost done...but there's still something coming in...",
+  "Inquiry is being transformed into linguistic building blocks...",
+  "Answers from collective knowledge are extracted...",
+  "Symbiotic AI strands are intertwined...",
+  "A pinch of neural synchronicity is added...",
+  "Final check of response integrity...",
+  "Loading process is nearing completion.",
+  "Response is translated into intelligible language...",
+  "Semantic variability is being applied...",
+  "Response is being finalized and formatted...",
+  "Response submitted!",
+  "Loading process completed. Your training plan is ready!",
 ];
 
 const LoadingComponent = () => {
@@ -46,10 +49,24 @@ const LoadingComponent = () => {
 
   return (
     <div>
-      <h2>Wir erstellen jetzt deinen Trainingsplan</h2>
-      {phrases[currentPhraseIndex]}
+      <PhraseTitleH2Styled>
+        The AI is creating your <br />
+        training plan now!
+      </PhraseTitleH2Styled>
+      <LottieAnimation animationData={animationDataTinkingAi} loop={true} />
+      <PhraseStyled>{phrases[currentPhraseIndex]}</PhraseStyled>
     </div>
   );
 };
 
 export default LoadingComponent;
+
+const PhraseStyled = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+const PhraseTitleH2Styled = styled.h2`
+  text-align: center;
+`;

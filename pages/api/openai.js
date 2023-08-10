@@ -1,5 +1,6 @@
 import { OpenAIApi, Configuration } from "openai";
 import { ExerciseFormat } from "../../lib/data-format";
+import ExerciseFormResult from "../../components/ExerciseFormResult";
 
 export default async function handler(req, res) {
   const configuration = new Configuration({
@@ -18,7 +19,10 @@ export default async function handler(req, res) {
         },
         {
           role: "user",
-          content: `Bitte erstelle einen maßgeschneiderten Trainingsplan für Anfänger in deutscher Sprache. Wähle 1 Eigengewichtsübungen aus, die du empfiehlst.
+          content: `Bitte erstelle einen maßgeschneiderten Trainingsplan für Anfänger in deutscher Sprache.
+          Anhand der vorgebenen Fragen und Antworten:
+          ${ExerciseFormResult}
+          Wähle 15 Eigengewichtsübungen aus, die du empfiehlst.
           Für jede dieser Übungen benötige ich folgende Angaben:
           - Übungsname
           - Kurze Übersicht der Übung
@@ -37,14 +41,14 @@ export default async function handler(req, res) {
       presence_penalty: 0,
     });
     const progress = Math.min(
-      Math.round((response.data.usage.total_tokens / 3000) * 100), // Annahme: 3000 Tokens pro Anfrage
-      100
+      Math.round((response.data.usage.total_tokens / 3000) * 100)
     );
 
     res.status(200).json({
       answer: response.data.choices[0].message.content,
       progress: progress,
     });
+    console.log(ExerciseFormResult);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred." });

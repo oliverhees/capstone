@@ -12,6 +12,7 @@ export default createGlobalStyle`
   }
 
   main{
-   padding: 10px;
+   padding: 0;
+   margin: 0%;
   }
 `;

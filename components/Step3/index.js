@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { TrainingsdataForm } from "../styles/TrainingsdataForm";
-import trainingsData from "../../lib/mock.js";
+// import trainingsData from "../../lib/mock.js";
 
 export default function Step3({ setFormData, formData, nextStep }) {
   const handleChange = (e) => {
@@ -10,7 +10,7 @@ export default function Step3({ setFormData, formData, nextStep }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormData({ ...formData, tData: trainingsData });
+    // setFormData({ ...formData, tData: trainingsData });
     nextStep();
   };
 

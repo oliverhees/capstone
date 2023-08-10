@@ -1,6 +1,5 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
-import { useState, useEffect, use } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
@@ -17,6 +16,8 @@ export default function App({ Component, pageProps }) {
       belly: "",
       hip: "",
       entryDate: "",
+      welcome: false,
+      firstFill: false,
     },
   });
 
@@ -24,7 +25,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Head>
-        <title>Capstone Project</title>
+        <title>AI Personal Trainer</title>
       </Head>
       <Component {...pageProps} setFormData={setFormData} formData={formData} />
     </>

@@ -1,24 +1,32 @@
 import styled from "styled-components";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function ProfileForm({ setFormData, formData }) {
   const [showSubmitBox, setShowSubmitBox] = useState(false);
+  const router = useRouter();
   //Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, firstFill: true });
   };
 
   //Handle form submit
-  const handleSubmit = (event) => {
+  const HandleSubmit = (event) => {
     event.preventDefault();
     const currentDate = new Date();
     // Save date in the desired format
-    if(!formData.entryDate){
+    if (!formData.entryDate) {
       setFormData({ ...formData, entryDate: currentDate.toLocaleDateString() });
     }
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
+    // Check if you need to redirect before setting state
+    if (!formData.firstFill) {
+      router.push("/");
+      return; // Prevent further execution
+    }
   };
 
   const SubmitBox = ({ onClose }) => {
@@ -37,7 +45,7 @@ export default function ProfileForm({ setFormData, formData }) {
 
   return (
     <>
-      <ProfileFormDiv onSubmit={handleSubmit}>
+      <ProfileFormDiv onSubmit={HandleSubmit}>
         <div className="column-left">
           <label htmlFor="first-name">First Name</label>
           <input
@@ -124,6 +132,7 @@ export default function ProfileForm({ setFormData, formData }) {
 
 /* Component Stylings */
 //Form
+
 const ProfileFormDiv = styled.form`
   display: flex;
   flex-direction: row;
@@ -133,10 +142,15 @@ const ProfileFormDiv = styled.form`
   input {
     margin-bottom: 20px;
     width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 2rem;
+    border: solid thin #f1f4f8;
   }
 
   label {
     margin-bottom: 10px;
+    font-size: 0.8rem;
   }
 
   .column-left {
@@ -153,33 +167,43 @@ const ProfileFormDiv = styled.form`
 `;
 
 const ProfileFormBodyDiv = styled.div`
-  grid-area: c;
   display: flex;
   gap: 10%;
   justify-content: space-between;
-  width: 95%;
+  width: 100%;
   margin-top: 20px;
 `;
 
 const BodyDetailDiv = styled.div`
-  border: solid thin #ccc;
+  border: none;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  align-items: center;
+  padding: 0;
+  align-items: left;
   border-radius: 15px;
 
   input {
-    width: 80%;
+    width: 100%;
   }
 `;
 
 //Submit Button
+
 const SubmitButton = styled.button`
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 30px 0;
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 2rem;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 `;
 
 const Overlay = styled.div`
