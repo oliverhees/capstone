@@ -204,6 +204,10 @@ const SubmitButton = styled.button`
     rgba(81, 45, 168, 1) 100%
   );
   border: none;
+
+  :hover{
+    background: linear-gradient(174deg, rgba(160,80,191,1) 0%, rgba(121,45,168,1) 100%);
+  }
 `;
 
 const Overlay = styled.div`

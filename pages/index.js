@@ -9,22 +9,23 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Home({ setFormData, formData }) {
-  const welcomeWorkflow = formData.welcome;
   const todayDate = new Date();
   const router = useRouter();
 
   useEffect(() => {
     // This check ensures that the router functions are only used on the client
-    if (typeof window !== 'undefined') {
-      if (formData.firstFill === false) {
-        router.push("/profile");
+    if (typeof window !== "undefined") {
+      if (formData.welcome === true) {
+        if (!formData.firstName && !formData.lastName && !formData.firstFill) {
+          router.push("/profile");
+        }
       }
     }
-  }, []);
-  
+  }, [formData.welcome]);
+
   return (
     <main>
-      {welcomeWorkflow === true ? (
+      {formData.welcome === true ? (
         <>
           <Heading>Hello {formData.firstName},</Heading>
           <SubHeading>
