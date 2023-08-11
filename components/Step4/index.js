@@ -34,6 +34,11 @@ export default function Step4({ formData, setFormData }) {
     }
   }
 
+  const message = `You've cleared the form hurdle, now all that's missing is the
+  grandiose click of the 'Create Workout Plan' button to get your
+  muscles as toned as your form-filling muscle! Let's go, let's start
+  the fitness journey! 💪🏋️‍♂️`;
+
   return (
     <main>
       {buttonClick ? (
@@ -59,12 +64,7 @@ export default function Step4({ formData, setFormData }) {
       ) : (
         <>
           <LottieAnimation animationData={animationDataExercise} loop={true} />
-          <p>
-            You've cleared the form hurdle, now all that's missing is the
-            grandiose click of the 'Create Workout Plan' button to get your
-            muscles as toned as your form-filling muscle! Let's go, let's start
-            the fitness journey! 💪🏋️‍♂️
-          </p>
+          <p></p>
           <ButtonViewTrainingDiv type="button" onClick={handleOpenAi}>
             Create Workout Plan
           </ButtonViewTrainingDiv>

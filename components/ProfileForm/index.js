@@ -9,7 +9,6 @@ export default function ProfileForm({ setFormData, formData }) {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    setFormData({ ...formData, firstFill: true });
   };
 
   //Handle form submit
@@ -22,10 +21,11 @@ export default function ProfileForm({ setFormData, formData }) {
     }
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
-    // Check if you need to redirect before setting state
+    setFormData({ ...formData, firstFill: true });
+
     if (!formData.firstFill) {
       router.push("/");
-      return; // Prevent further execution
+      return;
     }
   };
 
@@ -205,8 +205,12 @@ const SubmitButton = styled.button`
   );
   border: none;
 
-  :hover{
-    background: linear-gradient(174deg, rgba(160,80,191,1) 0%, rgba(121,45,168,1) 100%);
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
   }
 `;
 
