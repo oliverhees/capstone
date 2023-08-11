@@ -6,6 +6,12 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
+  :root {
+    --fs-h1: 1.5rem;
+    --bg-color: #F8FAFC;
+  }
+
   body {
     margin: 0;
     font-family: system-ui;

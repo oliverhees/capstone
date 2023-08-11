@@ -7,6 +7,7 @@ import CreateTrainingButton from "../components/CreateTrainingButton";
 import Welcome from "../components/Welcome";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 export default function Home({ setFormData, formData }) {
   const todayDate = new Date();
@@ -24,7 +25,7 @@ export default function Home({ setFormData, formData }) {
   }, [formData.welcome]);
 
   return (
-    <main>
+    <MainStyled>
       {formData.welcome === true ? (
         <>
           <Heading>Hello {formData.firstName},</Heading>
@@ -46,6 +47,12 @@ export default function Home({ setFormData, formData }) {
       ) : (
         <Welcome setFormData={setFormData} formData={formData} />
       )}
-    </main>
+    </MainStyled>
   );
 }
+
+const MainStyled = styled.main`
+  padding: 20px;
+  height: 100vh;
+  background-color: var(--bg-color);
+`;

@@ -14,14 +14,15 @@ export default function ProfileForm({ setFormData, formData }) {
   //Handle form submit
   const HandleSubmit = (event) => {
     event.preventDefault();
-    const currentDate = new Date();
-    // Save date in the desired format
-    if (!formData.entryDate) {
-      setFormData({ ...formData, entryDate: currentDate.toLocaleDateString() });
-    }
+
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
-    setFormData({ ...formData, firstFill: true });
+
+    if (!formData.entryDate) {
+      const currentDate = new Date();
+      const today = currentDate.toLocaleDateString();
+      setFormData({ ...formData, entryDate: today, firstFill: true });
+    }
 
     if (!formData.firstFill) {
       router.push("/");

@@ -23,8 +23,8 @@ const H1TitleStyled = styled.h1`
 `;
 
 const PStyled = styled.p`
-padding-top: 10px;
-font-size: 0.7rem;
+  padding-top: 10px;
+  font-size: 0.7rem;
 `;
 
 const MainWrapperStyled = styled.main`
@@ -33,7 +33,7 @@ const MainWrapperStyled = styled.main`
   padding: 20px;
   width: 100vw;
   height: 100vh;
-  background-color: #F8FAFC;
+  background-color: var(--bg-color);
 `;
 const ProfileDiv = styled.div`
   /* background-color: #fff; */
