@@ -12,7 +12,7 @@ export default function Overview({ weight }) {
       <WeightFrameDiv>
         <WeightDiv>
           <Image
-            src="/../public/weight.png"
+            src="/../public/target.png"
             width={25}
             height={25}
             alt="weight"
