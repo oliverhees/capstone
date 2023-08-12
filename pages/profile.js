@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import EntryDate from "../components/EntryDate";
 import ProfileForm from "../components/ProfileForm";
-import Router from "next/router";
 import MessageBox from "../components/MessageBox";
 
 export default function Profile({ setFormData, formData }) {

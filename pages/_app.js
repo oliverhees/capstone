@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: {
       tData: [],
       eDone: [],
+      dWeight: [],
       tDataCreated: "",
       firstName: "",
       lastName: "",

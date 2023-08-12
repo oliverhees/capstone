@@ -22,8 +22,6 @@ export default function Step4({ formData, setFormData }) {
       const response = await fetch("/api/openai");
       const data = await response.json();
       if (data) {
-        // console.log(data.answer);
-        // console.log(JSON.parse(data.answer.trim()));
         setExerciseData(data.answer.trim());
         console.log(exerciseData);
         updatedTDataList.push(JSON.parse(data.answer.trim()));

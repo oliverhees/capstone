@@ -7,7 +7,7 @@ export default function Overview({ weight }) {
     <>
       <OverviewTitleDiv>
         <OverviewTitle>Overview</OverviewTitle>
-        <AddWeight>Add Weight</AddWeight>
+        <AddWeight href="/weight">Add Weight</AddWeight>
       </OverviewTitleDiv>
       <WeightFrameDiv>
         <WeightDiv>
@@ -24,13 +24,13 @@ export default function Overview({ weight }) {
   );
 }
 
-const AddWeight = styled.button`
+const AddWeight = styled.a`
   font-size: 0.7rem;
   width: 28%;
   height: 25px;
   text-align: center;
   color: #fff;
-  padding-top: 2px;
+  padding-top: 4px;
   padding-bottom: 2px;
   border-radius: 2rem;
   background: rgb(120, 80, 191);
@@ -40,6 +40,7 @@ const AddWeight = styled.button`
     rgba(81, 45, 168, 1) 100%
   );
   border: none;
+  text-decoration: none;
 `;
 
 const OverviewTitle = styled.h2`
@@ -60,7 +61,7 @@ const WeightDiv = styled.div`
 `;
 
 const WeightFrameDiv = styled.div`
-  border: solid thin #dae0e8;
+  border: solid thin var(--b-color-grey);
   padding: 1rem;
   border-radius: 0.5rem;
 `;

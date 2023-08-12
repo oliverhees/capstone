@@ -10,6 +10,7 @@ export default createGlobalStyle`
   :root {
     --fs-h1: 1.5rem;
     --bg-color: #F8FAFC;
+    --b-color-grey: #dae0e8;
   }
 
   body {
