@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 import { Poppins } from "next/font/google";
+import FooterNavigationBar from "../components/FooterNavigationBar";
 
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -42,6 +43,7 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       <Component {...pageProps} setFormData={setFormData} formData={formData} />
+      <FooterNavigationBar />
     </>
   );
 }
