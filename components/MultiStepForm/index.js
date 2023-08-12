@@ -40,7 +40,8 @@ const MultiStepForm = ({ setFormData, formData }) => {
           formData={formData}
         />
       )}
-      {currentStep === 4 && <Step4 nextStep={nextStep} />}
+      {currentStep === 4 && <Step4 nextStep={nextStep} setFormData={setFormData}
+          formData={formData}/>}
     </div>
   );
 };
