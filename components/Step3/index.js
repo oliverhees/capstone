@@ -16,7 +16,7 @@ export default function Step3({ setFormData, formData, nextStep }) {
 
   return (
     <>
-      <h2>Step 3: Training preferences and requirements</h2>
+      <H2Title>Step 3: Training preferences and requirements</H2Title>
       <TrainingsdataForm onSubmit={handleSubmit}>
         <label>Do you have access to a gym or do you work out at home?</label>
         <div className="radio-fields">
@@ -145,19 +145,50 @@ export default function Step3({ setFormData, formData, nextStep }) {
           value={formData.rest_time}
           onChange={handleChange}
         />
-        <FormbuttonStyled type="submit">Create Plan</FormbuttonStyled>
+        <FormbuttonStyled type="submit">Go to the last step</FormbuttonStyled>
       </TrainingsdataForm>
     </>
   );
 }
 
 const FormbuttonStyled = styled.button`
-  padding: 10px 0px 10px 0px;
+  font-size: 1rem;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 2rem;
-  border: solid thin #ccc;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-  &:hover {
-    background-color: #999;
-    color: #fff;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
   }
+  &:visited {
+    text-decoration: none;
+  }
+
+  .icon path {
+    stroke: #fff;
+  }
+`;
+
+const H2Title = styled.h2`
+font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

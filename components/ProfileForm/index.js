@@ -20,7 +20,7 @@ export default function ProfileForm({ setFormData, formData }) {
     setShowSubmitBox(true);
     setTimeout(handleCloseBox, 2000);
 
-    if (!formData.entryDate) {
+    if (!formData.entryDate === true) {
       const currentDate = new Date();
       const today = currentDate.toLocaleDateString();
       setFormData({

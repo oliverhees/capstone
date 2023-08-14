@@ -44,7 +44,11 @@ export default function App({ Component, pageProps }) {
           font-family: ${poppins.style.fontFamily};
         }
       `}</style>
-      <Header formData={formData} setFormData={setFormData} />
+      {formData.firstFill === true ? (
+        <Header formData={formData} setFormData={setFormData} />
+      ) : (
+        ""
+      )}
       <Component {...pageProps} setFormData={setFormData} formData={formData} />
       <FooterNavigationBar />
     </>

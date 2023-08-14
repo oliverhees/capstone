@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { TrainingsdataForm } from "../styles/TrainingsdataForm";
 
 export default function Step1({ setFormData, formData, nextStep }) {
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -15,7 +14,7 @@ export default function Step1({ setFormData, formData, nextStep }) {
 
   return (
     <>
-      <h2>Step 1: Personal information</h2>
+      <H2Title>Step 1: Personal information</H2Title>
       <TrainingsdataForm onSubmit={handleSubmit}>
         <label htmlFor="age">Age</label>
         <input
@@ -72,21 +71,50 @@ export default function Step1({ setFormData, formData, nextStep }) {
           </>
         )}
 
-        <FormbuttonStyled type="submit">
-          Next
-        </FormbuttonStyled>
+        <FormbuttonStyled type="submit">Next</FormbuttonStyled>
       </TrainingsdataForm>
     </>
   );
 }
 
 const FormbuttonStyled = styled.button`
-    padding: 10px 0px 10px 0px;
-    border-radius: 2rem;
-    border: solid thin #ccc;
+  font-size: 1rem;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-    &:hover{
-      background-color: #999;
-      color: #fff;
-    }
-  `;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
+  }
+  &:visited {
+    text-decoration: none;
+  }
+
+  .icon path {
+    stroke: #fff;
+  }
+`;
+
+const H2Title = styled.h2`
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

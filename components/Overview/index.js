@@ -2,18 +2,21 @@ import styled from "styled-components";
 import Image from "next/image";
 import WeightChart from "../RenderChart";
 
-export default function Overview({ weight }) {
+export default function Overview({ weight, formData }) {
   const weightData = weight ? weight + " kg" : "k.a";
 
-  const dWeight = [
-    {},
-    { todayWeight: "116", weight_date: "11.8.2023" },
-    { todayWeight: "114", weight_date: "13.8.2023" },
-    { todayWeight: "112", weight_date: "18.8.2023" },
-    { todayWeight: "100", weight_date: "22.8.2023" },
-    { todayWeight: "98", weight_date: "30.8.2023" },
-    { todayWeight: "92", weight_date: "31.8.2023" },
-  ];
+  const dWeight = formData.dWeight;
+
+  // const dWeight = [
+  //   {},
+  //   { todayWeight: "116", weight_date: "11.8.2023" },
+  //   { todayWeight: "114", weight_date: "13.8.2023" },
+  //   { todayWeight: "112", weight_date: "18.8.2023" },
+  //   { todayWeight: "100", weight_date: "22.8.2023" },
+  //   { todayWeight: "98", weight_date: "30.8.2023" },
+  //   { todayWeight: "92", weight_date: "31.8.2023" },
+  // ];
+
   return (
     <>
       <OverviewTitleDiv>

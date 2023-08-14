@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function DisplayWorkoutPlan({ formData }) {
 
   if(!formData.training_goal){
-    return 'No Workout'
+    return
   }
   return (
     <Link href="/exercise" style={{ textDecoration: "none" }}>

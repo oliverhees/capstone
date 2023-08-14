@@ -14,7 +14,7 @@ export default function Step2({ setFormData, formData, nextStep }) {
 
   return (
     <>
-      <h2>Step 2: Training goal and frequency</h2>
+      <H2Title>Step 2: Training goal and frequency</H2Title>
       <TrainingsdataForm onSubmit={handleSubmit}>
         <label htmlFor="training_goal">What is your training goal?</label>
         <select
@@ -88,12 +88,43 @@ export default function Step2({ setFormData, formData, nextStep }) {
 }
 
 const FormbuttonStyled = styled.button`
-  padding: 10px 0px 10px 0px;
+  font-size: 1rem;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 2rem;
-  border: solid thin #ccc;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-  &:hover {
-    background-color: #999;
-    color: #fff;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
   }
+  &:visited {
+    text-decoration: none;
+  }
+
+  .icon path {
+  stroke: #fff;
+  }
+`;
+
+const H2Title = styled.h2`
+font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

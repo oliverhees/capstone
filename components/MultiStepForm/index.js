@@ -51,6 +51,7 @@ export default MultiStepForm;
 
 const MultistepFormWrapper = styled.div`
 width: 100%;
+padding: 60px 0;
 display: flex;
 flex-direction: column;
 align-items: center;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const DataComparison = ({ type, actually, reference }) => {
   if (actually.length < 2) {
-    return <p>Not enough data to compare</p>;
+    return <p>0 cm</p>;
   }
 
   const lastEntry = actually[actually.length - 1];

@@ -9,7 +9,7 @@ const WeightChart = ({ dWeight }) => {
     // Filtere Einträge ohne Datum und parse gültige Daten
     const validData = dWeight.filter(data => data.weight_date);
     const parsedData = validData.map(data => ({
-      weight: parseFloat(data.todayWeight),
+      weight: parseFloat(data.weight),
       date: new Date(data.weight_date.split('.').reverse().join('-')),
     }));
 

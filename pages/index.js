@@ -27,7 +27,7 @@ export default function Home({ setFormData, formData }) {
     <MainStyled>
       {formData.welcome === true ? (
         <>
-          <Overview weight={formData.weight} />
+          <Overview weight={formData.weight} formData={formData} />
           <BodyDimensions
             chestD={formData.chest}
             bellyD={formData.belly}
