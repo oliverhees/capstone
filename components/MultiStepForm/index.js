@@ -3,6 +3,7 @@ import Step1 from "../Step1";
 import Step2 from "../Step2";
 import Step3 from "../Step3";
 import Step4 from "../Step4";
+import styled from "styled-components";
 
 const MultiStepForm = ({ setFormData, formData }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -16,7 +17,7 @@ const MultiStepForm = ({ setFormData, formData }) => {
   };
 
   return (
-    <div>
+    <MultistepFormWrapper>
       {currentStep === 1 && (
         <Step1
           nextStep={nextStep}
@@ -42,8 +43,16 @@ const MultiStepForm = ({ setFormData, formData }) => {
       )}
       {currentStep === 4 && <Step4 nextStep={nextStep} setFormData={setFormData}
           formData={formData}/>}
-    </div>
+    </MultistepFormWrapper>
   );
 };
 
 export default MultiStepForm;
+
+const MultistepFormWrapper = styled.div`
+width: 100%;
+padding: 60px 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+`;

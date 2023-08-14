@@ -3,6 +3,7 @@ import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 import { Poppins } from "next/font/google";
 import FooterNavigationBar from "../components/FooterNavigationBar";
+import Header from "../components/Header";
 
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }) {
       entryDate: "",
       welcome: false,
       firstFill: false,
+      imageUrl: "",
     },
   });
 
@@ -42,6 +44,11 @@ export default function App({ Component, pageProps }) {
           font-family: ${poppins.style.fontFamily};
         }
       `}</style>
+      {formData.firstFill === true ? (
+        <Header formData={formData} setFormData={setFormData} />
+      ) : (
+        ""
+      )}
       <Component {...pageProps} setFormData={setFormData} formData={formData} />
       <FooterNavigationBar />
     </>

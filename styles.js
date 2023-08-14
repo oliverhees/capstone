@@ -11,6 +11,7 @@ export default createGlobalStyle`
     --fs-h1: 1.5rem;
     --bg-color: #F8FAFC;
     --b-color-grey: #dae0e8;
+    --box-shadow: -2px 2px 8px -1px rgba(80,80,80,0.7);
   }
 
   body {

@@ -19,7 +19,14 @@ export default function Step4({ formData, setFormData }) {
     const updatedTDataList = formData.tData || [];
 
     try {
-      const response = await fetch("/api/openai");
+      const response = await fetch("/api/openai", {
+        method: "POST", // oder die geeignete HTTP-Methode
+        headers: {
+          "Content-Type": "application/json", // Setzen des Content-Type Headers
+        },
+        body: JSON.stringify({ formData }), // Hier wird die formData in JSON umgewandelt und als Anfragekörper gesendet
+      });
+      
       const data = await response.json();
       if (data) {
         setExerciseData(data.answer.trim());
@@ -38,9 +45,9 @@ export default function Step4({ formData, setFormData }) {
   the fitness journey! 💪🏋️‍♂️`;
 
   return (
-    <main>
+    <StyledMain>
       {buttonClick ? (
-        <div>
+        <Wrapper>
           {exerciseData ? (
             <>
               <LottieAnimation animationData={animationData} loop={true} />
@@ -48,7 +55,7 @@ export default function Step4({ formData, setFormData }) {
                 Your training plan was successfully created!
               </ProcessEndH2>
               <Link href="/exercise">
-                <ButtonViewTrainingDiv type="button">
+                <ButtonViewTrainingDiv>
                   View training plan now
                 </ButtonViewTrainingDiv>
               </Link>
@@ -58,7 +65,7 @@ export default function Step4({ formData, setFormData }) {
               <LoadingComponent />
             </div>
           )}
-        </div>
+        </Wrapper>
       ) : (
         <>
           <LottieAnimation animationData={animationDataExercise} loop={true} />
@@ -68,22 +75,58 @@ export default function Step4({ formData, setFormData }) {
           </ButtonViewTrainingDiv>
         </>
       )}
-    </main>
+    </StyledMain>
   );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  a {
+    text-decoration: none;
+  }
+`;
+
+const StyledMain = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const ProcessEndH2 = styled.h2`
   text-align: center;
 `;
 const ButtonViewTrainingDiv = styled.button`
-  margin-top: 1rem;
-  padding: 10px 0px 10px 0px;
+  font-size: 1rem;
+  margin-top: 20px;
+  width: 400px;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 2rem;
-  width: 100%;
-  border: solid thin #ccc;
+  background: rgb(120, 80, 191);
+  text-decoration: none;
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-  &:hover {
-    background-color: #999;
-    color: #fff;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
+  }
+  &:visited {
+    text-decoration: none;
   }
 `;

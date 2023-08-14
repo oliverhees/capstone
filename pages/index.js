@@ -1,13 +1,12 @@
-import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
-import DateDiff from "../components/DateDiff";
 import Overview from "../components/Overview";
 import BodyDimensions from "../components/BodyDimensions";
 import CreateTrainingButton from "../components/CreateTrainingButton";
+import NewTrainingButton from "../components/NewTrainingButton";
 import Welcome from "../components/Welcome";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
+import DisplayWorkoutPlan from "../components/DisplayWorkoutPlan";
 
 export default function Home({ setFormData, formData }) {
   const todayDate = new Date();
@@ -28,21 +27,15 @@ export default function Home({ setFormData, formData }) {
     <MainStyled>
       {formData.welcome === true ? (
         <>
-          <Heading>Hello {formData.firstName},</Heading>
-          <SubHeading>
-            Days:{" "}
-            <DateDiff
-              sDate={formData.entryDate}
-              eDate={todayDate.toLocaleDateString()}
-            />
-          </SubHeading>
-          <Overview weight={formData.weight} />
+          <Overview weight={formData.weight} formData={formData} />
           <BodyDimensions
             chestD={formData.chest}
             bellyD={formData.belly}
             hipD={formData.hip}
+            formData={formData}
           />
-          <CreateTrainingButton />
+          {!formData.tData ? "" : <DisplayWorkoutPlan formData={formData} />}
+          {!formData.tData ? <CreateTrainingButton /> : <NewTrainingButton />}
         </>
       ) : (
         <Welcome setFormData={setFormData} formData={formData} />
@@ -52,7 +45,7 @@ export default function Home({ setFormData, formData }) {
 }
 
 const MainStyled = styled.main`
-  padding: 20px;
+  padding: 50px 20px;
   height: 100vh;
   background-color: var(--bg-color);
 `;

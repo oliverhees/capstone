@@ -10,7 +10,6 @@ export default function Welcome({ formData, setFormData }) {
   return (
     <MainStyled>
       <LottieAnimation
-        className="animation"
         animationData={animationDataAi}
         loop={true}
       />
@@ -74,12 +73,11 @@ const BottomSliderStyled = styled.div`
   }
 `;
 
-const MainStyled = styled.main`
+const MainStyled = styled.div`
   z-index: 1;
-  margin: 0;
-  padding: 80px 0px;
-  width: 100vw;
-  height: 100vh;
+  margin: -50px -20px;
+  height: 100%;
+  padding-top: 110px;
   background: rgb(120, 108, 255);
   background: linear-gradient(
     174deg,
@@ -90,4 +88,5 @@ const MainStyled = styled.main`
   .bgWelcome {
     z-index: -1;
   }
+
 `;

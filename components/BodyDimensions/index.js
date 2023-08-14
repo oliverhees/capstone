@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
+import DataComparison from "../BodyDimensionCalc";
 
-export default function BodyDimensions({ chestD, bellyD, hipD }) {
+export default function BodyDimensions({ chestD, bellyD, hipD, formData }) {
   const chest = chestD ? chestD : 0;
   const belly = bellyD ? bellyD : 0;
   const hip = hipD ? hipD : 0;
@@ -9,33 +10,53 @@ export default function BodyDimensions({ chestD, bellyD, hipD }) {
   return (
     <BodyDimensionsWrapperDiv>
       <DimensionWrapperDiv>
-      <Image
-            src="/../public/torso.png"
-            width={25}
-            height={25}
-            alt="weight"
-          />
-        <DimensionDiv>{chest} cm</DimensionDiv>
+        <Image src="/../public/torso.png" width={25} height={25} alt="weight" />
+        <DimensionDiv>
+          {!formData.dWeight ? (
+            { chest }
+          ) : (
+            <DataComparison
+              type="chest"
+              reference={chest}
+              actually={formData.dWeight}
+            />
+          )}
+        </DimensionDiv>
         <DimensionTitleDiv>Chest</DimensionTitleDiv>
       </DimensionWrapperDiv>
       <DimensionWrapperDiv>
-      <Image
-            src="/../public/fat.png"
-            width={25}
-            height={25}
-            alt="weight"
-          />
-        <DimensionDiv>{belly} cm</DimensionDiv>
+        <Image src="/../public/fat.png" width={25} height={25} alt="weight" />
+        <DimensionDiv>
+          {!formData.dWeight ? (
+            { belly }
+          ) : (
+            <DataComparison
+              type="belly"
+              reference={belly}
+              actually={formData.dWeight}
+            />
+          )}
+        </DimensionDiv>
         <DimensionTitleDiv>Belly</DimensionTitleDiv>
       </DimensionWrapperDiv>
       <DimensionWrapperDiv>
-      <Image
-            src="/../public/waist (1).png"
-            width={25}
-            height={25}
-            alt="weight"
-          />
-        <DimensionDiv>{hip} cm</DimensionDiv>
+        <Image
+          src="/../public/waist (1).png"
+          width={25}
+          height={25}
+          alt="weight"
+        />
+        <DimensionDiv>
+          {!formData.dWeight ? (
+            { hip }
+          ) : (
+            <DataComparison
+              type="hip"
+              reference={hip}
+              actually={formData.dWeight}
+            />
+          )}
+        </DimensionDiv>
         <DimensionTitleDiv>Hip</DimensionTitleDiv>
       </DimensionWrapperDiv>
     </BodyDimensionsWrapperDiv>
@@ -64,6 +85,7 @@ const DimensionWrapperDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: var(--box-shadow);
 `;
 
 const BodyDimensionsWrapperDiv = styled.div`

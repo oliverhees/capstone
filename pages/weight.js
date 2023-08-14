@@ -26,7 +26,8 @@ export default function Weight({ formData, setFormData }) {
   };
 
   const handleOnChange = (event) => {
-    setTodayWeight(event.target.value);
+    const { name, value } = event.target;
+    setTodayWeight({ ...todayWeight, [name]: value });
   };
 
   //Handle input change
@@ -37,7 +38,7 @@ export default function Weight({ formData, setFormData }) {
     setTimeout(handleCloseBox, 2000);
 
     updatedWeight.push({
-      todayWeight,
+      ...todayWeight,
       weight_date: todayDate.toLocaleDateString(),
     });
 
@@ -59,19 +60,43 @@ export default function Weight({ formData, setFormData }) {
           <StyledArrowIcon />
           Back
         </Heading>
-        <H1WeightTitle>Add your weight!</H1WeightTitle>
+        <H1WeightTitle>Add your actually body values!</H1WeightTitle>
         <WeightFormStyled onSubmit={handleSubmit}>
           <FormWrapper>
+            <label htmlFor="weight">Weight in kg</label>
             <input
               type="number"
               id="weight"
               onChange={handleOnChange}
               name="weight"
-              value={todayWeight}
+              value={todayWeight.weight}
             />
-            <label htmlFor="weight">kg</label>
+            <label htmlFor="chest">Chest in cm</label>
+            <input
+              type="number"
+              id="chest"
+              onChange={handleOnChange}
+              name="chest"
+              value={todayWeight.chest}
+            />
+            <label htmlFor="belly">Belly in cm</label>
+            <input
+              type="number"
+              id="belly"
+              onChange={handleOnChange}
+              name="belly"
+              value={todayWeight.belly}
+            />
+            <label htmlFor="hip">Hip in cm</label>
+            <input
+              type="number"
+              id="hip"
+              onChange={handleOnChange}
+              name="hip"
+              value={todayWeight.hip}
+            />
           </FormWrapper>
-          <SubmitButton>Add Weight</SubmitButton>
+          <SubmitButton>Add Body Values</SubmitButton>
           {showSubmitBox && <SubmitBox onClose={handleCloseBox} />}
         </WeightFormStyled>
       </>
@@ -88,7 +113,7 @@ const FormWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 `;
 
@@ -130,7 +155,7 @@ const WeightFormStyled = styled.form`
   align-items: center;
 
   input {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     width: 30%;
     background-color: #fff;
     padding: 10px;
@@ -143,7 +168,7 @@ const WeightFormStyled = styled.form`
 
   label {
     font-size: 1rem;
-    margin: -20px 0 0 10px;
+    margin: -20px 0 5px 0px;
     font-size: 1.2rem;
   }
 
@@ -157,6 +182,10 @@ const WeightFormStyled = styled.form`
     display: flex;
     flex-direction: column;
     width: 40%;
+  }
+
+  ::placeholder {
+    font-size: 1rem;
   }
 `;
 
