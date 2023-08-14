@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-export default function CreateTrainingButton() {
+export default function NewTrainingButton() {
   return (
     <Link href="/trainingsdata">
-      <CreateTrainingButtonDiv>Create AI Workout Plan</CreateTrainingButtonDiv>
+      <NewTrainingButtonDiv>Create New AI Workout Plan</NewTrainingButtonDiv>
     </Link>
   );
 }
 
-const CreateTrainingButtonDiv = styled.button`
+const NewTrainingButtonDiv = styled.button`
   font-size: 1rem;
   width: 100%;
   margin-top: 20px;

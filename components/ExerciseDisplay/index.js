@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GrFormPreviousLink, GrFormNextLink } from "react-icons/gr";
 import Link from "next/link";
 import ReactPlayer from "react-player";
+import CountdownTimer from "../ExerciseCounter";
 
 const ExerciseDisplay = ({ setFormData, formData, exercises }) => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -95,7 +96,7 @@ const ExerciseDisplay = ({ setFormData, formData, exercises }) => {
           </ExerciseDetails>
         </ExerciseDiv>
       </ExerciseFrameDiv>
-
+<CountdownTimer />
       <ExerciseNavigation>
         {foundExerciseData(exercise[exerciseArray]._id) ? (
           <ButtonExerciseDoneMarkStyled>
@@ -110,24 +111,24 @@ const ExerciseDisplay = ({ setFormData, formData, exercises }) => {
       <ExerciseNavigation>
         {currentExerciseIndex > 0 ? (
           <ButtonStyled onClick={prevExercise}>
-            <GrFormPreviousLink size={20} />
+            <GrFormPreviousLink className="icon" size={20} />
             Prev
           </ButtonStyled>
         ) : (
           <ButtonStyled>
-            <GrFormPreviousLink size={20} />
+            <GrFormPreviousLink className="icon" size={20} />
             Prev
           </ButtonStyled>
         )}
         {currentExerciseIndex === exerciseCount - 1 ? (
           <Link href="/exercise-done">
-            <ButtonExerciseDoneStyled>
-              Next <GrFormNextLink size={20} />
-            </ButtonExerciseDoneStyled>
+            <ButtonStyled>
+              Next <GrFormNextLink className="icon" size={20} />
+            </ButtonStyled>
           </Link>
         ) : (
           <ButtonStyled onClick={nextExercise}>
-            Next <GrFormNextLink size={20} />
+            Next <GrFormNextLink className="icon" size={20} />
           </ButtonStyled>
         )}
       </ExerciseNavigation>
@@ -152,6 +153,9 @@ const PlayerWrapper = styled.div`
 
 const ExerciseDetails = styled.div`
   font-size: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 const ExerciseDescription = styled.div`
@@ -160,15 +164,18 @@ const ExerciseDescription = styled.div`
 `;
 
 const ExerciseRepetitions = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   padding: 1rem 0;
   width: 50%;
 `;
 
 const ExerciseSets = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   padding: 1rem 0;
   width: 50%;
+  text-align: right;
 `;
 
 const ExerciseNavigation = styled.div`
@@ -177,25 +184,32 @@ const ExerciseNavigation = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 20px;
 `;
 
 const ButtonExerciseDoneStyled = styled.button`
   font-size: 1rem;
   width: 100%;
-  padding: 10px 60px;
+  text-align: center;
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: 2rem;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  background-color: aliceblue;
-  border: solid thin #ccc;
-  color: #000;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-  &:hover {
-    background-color: mediumslateblue;
-    color: #fff;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
+
   }
 
   &:visited {
@@ -221,28 +235,40 @@ const ButtonExerciseDoneMarkStyled = styled.button`
 const ButtonStyled = styled.button`
   font-size: 1rem;
   width: 200px;
+  text-align: center;
+  color: #fff;
   padding: 10px 0;
-  border-radius: 2rem;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-decoration: none;
-  background-color: aliceblue;
-  border: solid thin #ccc;
-  color: #000;
+  align-items: center;
+  border-radius: 2rem;
+  background: rgb(120, 80, 191);
+  background: linear-gradient(
+    174deg,
+    rgba(120, 80, 191, 1) 0%,
+    rgba(81, 45, 168, 1) 100%
+  );
+  border: none;
 
-  &:hover {
-    background-color: mediumslateblue;
-    color: #fff;
+  :hover {
+    background: linear-gradient(
+      174deg,
+      rgba(160, 80, 191, 1) 0%,
+      rgba(121, 45, 168, 1) 100%
+    );
   }
-
   &:visited {
     text-decoration: none;
+  }
+
+  .icon path {
+  stroke: #fff;
   }
 `;
 
 const ExerciseTitleH2 = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 400;
 `;
 
 const ExerciseDiv = styled.div`
@@ -250,12 +276,13 @@ const ExerciseDiv = styled.div`
 `;
 
 const ExerciseFrameDiv = styled.div`
-  border: solid thin #ccc;
   padding: 2rem;
   border-radius: 1rem;
 `;
 
 const ExerciseTitleH3 = styled.h3`
   text-align: left;
-  margin: 2rem 0 0.5rem 0;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+  font-size: 1.2rem;
 `;

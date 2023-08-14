@@ -4,7 +4,6 @@ import styled from "styled-components";
 const MyPage = ({ setFormData, formData }) => {
   return (
     <TrainingsdataWrapperDiv>
-      <TrainingsdataTitleH1>Trainingsdata</TrainingsdataTitleH1>
       <MultiStepForm setFormData={setFormData} formData={formData} />
     </TrainingsdataWrapperDiv>
   );
@@ -12,11 +11,11 @@ const MyPage = ({ setFormData, formData }) => {
 
 export default MyPage;
 
-const TrainingsdataTitleH1 = styled.h1`
-  font-weight: bold;
-  font-size: 2rem;
-`;
-
 const TrainingsdataWrapperDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
 `;

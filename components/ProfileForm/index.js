@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import ImageUpload from "../../components/ImageUpload";
 
 export default function ProfileForm({ setFormData, formData }) {
   const [showSubmitBox, setShowSubmitBox] = useState(false);
+  const [image, setImage] = useState(null);
   const router = useRouter();
   //Handle input change
   const handleInputChange = (event) => {
@@ -21,7 +23,15 @@ export default function ProfileForm({ setFormData, formData }) {
     if (!formData.entryDate) {
       const currentDate = new Date();
       const today = currentDate.toLocaleDateString();
-      setFormData({ ...formData, entryDate: today, firstFill: true });
+      setFormData({
+        ...formData,
+        entryDate: today,
+        firstFill: true,
+      });
+    }
+
+    if (image) {
+      setFormData({ ...formData, imageUrl: image.url });
     }
 
     if (!formData.firstFill) {
@@ -43,9 +53,9 @@ export default function ProfileForm({ setFormData, formData }) {
   const handleCloseBox = () => {
     setShowSubmitBox(false);
   };
-
   return (
     <>
+      <ImageUpload image={image} setImage={setImage} />
       <ProfileFormDiv onSubmit={HandleSubmit}>
         <div className="column-left">
           <label htmlFor="first-name">First Name</label>
@@ -139,6 +149,7 @@ const ProfileFormDiv = styled.form`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  height: auto;
 
   input {
     margin-bottom: 20px;

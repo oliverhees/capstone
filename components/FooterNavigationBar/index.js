@@ -81,12 +81,6 @@ const NavElementIcon = styled.div`
   font-size: 1rem;
 `;
 
-// const NavElementText = styled.span`
-//   font-size: 0.8rem;
-//   color: #999fa8;
-
-// `;
-
 const NavElementText = styled.span`
   font-size: 0.8rem;
   color: ${(props) => (props.isActive ? "#461B93" : "#999fa8")};
